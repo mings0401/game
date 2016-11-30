@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GameFactory</string>
+    <string name="title_activity_bulls_and_cows_game">BullsAndCowsGame</string>
 </resources>

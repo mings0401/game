@@ -20,11 +20,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <Button
-            android:text="Bulls And Cows"
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bullsandcows_btn" />
+
     </LinearLayout>
 </RelativeLayout>
