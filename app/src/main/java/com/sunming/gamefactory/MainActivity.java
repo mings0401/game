@@ -3,6 +3,9 @@ package com.sunming.gamefactory;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -22,11 +25,17 @@ public class MainActivity extends Activity implements Runnable {
     private AdView [] mAdView = new AdView[2]; //광고 담을 변수
     private InterstitialAd interstitial; //광고 담을 변수
     private Handler handler = null; //thread handler
-    private TextView missionNumberTextView, countNumberTextView, stateTextView;
+    private TextView missionNumberTextView, countNumberTextView, stateTextView, myTopStageTextView;
     //missionNumber : 왼쪽 상단 mission 숫자 maxNumber : 미션 숫자 중 최대 숫자, currentNumber : 현재 바뀌고있는 숫자, switchNumber : 1또는 -1로 쓰레드 숫자가 늘어나거나 줄어드는거 조절
     //stageNumer : 현재 스테이지 숫자, speed : 숫자 올라가는 속도
     private int missionNumber = 0, maxNumber = 10, currentNumber = 0, switchNumber = 1, stageNumer = 0, speed = 500;
     private CountThread thread; //쓰레드 변수
+
+    //DB 관련 변수
+    private MySQLiteOpenHelper helper;
+    String dbName = "click50.db";
+    int dbVersion = 1; // 데이터베이스 버전
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +51,25 @@ public class MainActivity extends Activity implements Runnable {
         missionNumberTextView = (TextView) findViewById(R.id.mission_txt); //좌측 상단 미션 숫자
         countNumberTextView = (TextView) findViewById(R.id.count_txt); //가운데 쓰레드로 변경될 숫자
         stateTextView = (TextView) findViewById(R.id.stage_txt); // 상단 가운데 Stage Number
+        myTopStageTextView = (TextView) findViewById(R.id.mytopscore_txt);
+
+        // sqLite3 : 모바일 용으로 제작된 경량화 DB
+        helper = new MySQLiteOpenHelper(
+                this,  // 현재 화면의 제어권자
+                dbName,// db 이름
+                null,  // 커서팩토리-null : 표준커서가 사용됨
+                dbVersion);       // 버전
+
+        try {
+            db = helper.getWritableDatabase(); // 읽고 쓸수 있는 DB
+            //db = helper.getReadableDatabase(); // 읽기 전용 DB select문
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+            finish(); // 액티비티 종료
+        }
+
+        //내 최고 기록 셋팅
+        myTopStageTextView.setText("My Top Stage : " + getMyyMaxStage());
 
         Intent startDailogIntent = new Intent(getApplicationContext(), StartDialogActivity.class);
         startActivity(startDailogIntent);
@@ -103,11 +131,39 @@ public class MainActivity extends Activity implements Runnable {
                 speed = 20;
             startGame();
         } else { //game over 됫을때 ...
+            insertMyStageToDB();
             Intent finishActivity = new Intent(getApplicationContext(), FinishActivity.class);
             startActivity(finishActivity);
             showInterstitial();
             finish();
         }
+    }
+
+    /**
+     * MainActivity의 handler 넘겨주는 함
+     * @return
+     */
+    public Handler getHandler() {
+        return handler;
+    }
+
+    /**
+     * DB에서 현재 최고 기록 가져오기
+     */
+    public int getMyyMaxStage() {
+        Cursor c = db.rawQuery("select MAX(stage) from myrecords;", null);
+        int stage = 0;
+        while(c.moveToNext()) {
+            stage = c.getInt(0);
+        }
+        return stage;
+    }
+
+    /**
+     * DB에서 현재 Stage 집어 넣기
+     */
+    public void insertMyStageToDB () {
+        db.execSQL("insert into myrecords values("+stageNumer+");");
     }
 
     /**
@@ -125,14 +181,6 @@ public class MainActivity extends Activity implements Runnable {
         thread = new CountThread(this, speed);
 
         thread.start();
-    }
-
-    /**
-     * MainActivity의 handler 넘겨주는 함
-     * @return
-     */
-    public Handler getHandler() {
-        return handler;
     }
 
     /**
