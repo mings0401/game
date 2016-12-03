@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,16 +15,20 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements Runnable {
     public static Context mContext; //다른 activity에서 함수 호출되도록
     private AdView [] mAdView = new AdView[2]; //광고 담을 변수
+    private Handler handler = null; //thread handler
     private TextView missionNumberTextView, countNumberTextView, stateTextView;
+    private int missionNumber = 0, maxNumber = 10, currentNumber = 0, switchNumber = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mContext = this;
+        handler = new Handler();
 
         settingAd(); //광고 호출 함수
 
@@ -41,7 +46,25 @@ public class MainActivity extends Activity {
      * 게임 시작
      */
     public void startGame(){
-//        Toast.makeText(getApplicationContext(), "토스트메시지입니다.", Toast.LENGTH_LONG).show();
+        String missionNumberToString = "";
+        missionNumber = (int) (Math.random() * (maxNumber - 5 + 1)) + 5; //random number
+        missionNumberToString += missionNumber;
+        missionNumberTextView.setText(missionNumberToString);
+
+        currentNumber = 0;
+        countNumberTextView.setText("0");
+
+        CountThread thread = new CountThread(this, 1000);
+
+        thread.start();
+    }
+
+    /**
+     * MainActivity의 handler 넘겨주는 함
+     * @return
+     */
+    public Handler getHandler() {
+        return handler;
     }
 
     /**
@@ -59,5 +82,19 @@ public class MainActivity extends Activity {
 
     }
 
+    /**
+     * countThread 돌리는 것
+     */
+    @Override
+    public void run() {
+        if (currentNumber == maxNumber) switchNumber = -1;
+        else if (currentNumber == 0) switchNumber = 1;
 
+        currentNumber += switchNumber;
+
+        String s = "";
+
+        s += currentNumber;
+        countNumberTextView.setText(s);
+    }
 }
