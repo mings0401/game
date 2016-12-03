@@ -7,32 +7,52 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 public class MainActivity extends Activity {
     Button bullsandcows;
+    private AdView [] mAdView = new AdView[2]; //광고 담을 변수
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bullsandcows = (Button)findViewById(R.id.bullsandcows_btn);
-        View.OnClickListener moveGame = new View.OnClickListener() {
-            public void onClick(View v) {
-                switch(v.getId()){
-                    case R.id.bullsandcows_btn :
-                    Intent reserveintent = new Intent(MainActivity.this, BullsAndCowsGameActivity.class);
-                    startActivity(reserveintent);
-                        break;
+        settingAd(); //광고 호출 함수
 
-                };
-            }
-
-        };
-
-        bullsandcows.setOnClickListener(moveGame);
+//        bullsandcows = (Button)findViewById(R.id.bullsandcows_btn);
+//        View.OnClickListener moveGame = new View.OnClickListener() {
+//            public void onClick(View v) {
+//                switch(v.getId()){
+//                    case R.id.bullsandcows_btn :
+//                    Intent reserveintent = new Intent(MainActivity.this, BullsAndCowsGameActivity.class);
+//                    startActivity(reserveintent);
+//                        break;
+//
+//                };
+//            }
+//
+//        };
+//
+//        bullsandcows.setOnClickListener(moveGame);
 
     }
 
+    /**
+     * 광고 셋팅해주는 함수
+     */
+    public void settingAd(){
+        //상단 배너 광고
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView[0] = (AdView) findViewById(R.id.adView);
+        mAdView[0].loadAd(adRequest);
 
+        //하단 배너 광고
+        mAdView[1] = (AdView) findViewById(R.id.adView1);
+        mAdView[1].loadAd(adRequest);
+
+    }
 
 
 }
