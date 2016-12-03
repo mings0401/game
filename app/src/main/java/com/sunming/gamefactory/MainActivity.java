@@ -102,7 +102,9 @@ public class MainActivity extends Activity implements Runnable {
                 speed = 20;
             startGame();
         } else { //game over 됫을때 ...
-
+            Intent finishActivity = new Intent(getApplicationContext(), FinishActivity.class);
+            startActivity(finishActivity);
+            finish();
         }
     }
 

@@ -29,7 +29,11 @@
         <activity
             android:name=".StartDialogActivity"
             android:label="@string/title_activity_start_dialog"
-            android:theme="@android:style/Theme.Dialog"></activity>
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".FinishActivity"
+            android:label="@string/title_activity_finish"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
