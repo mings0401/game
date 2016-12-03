@@ -12,7 +12,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
 public class MainActivity extends Activity {
-    Button bullsandcows;
     private AdView [] mAdView = new AdView[2]; //광고 담을 변수
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,22 +19,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         settingAd(); //광고 호출 함수
-
-//        bullsandcows = (Button)findViewById(R.id.bullsandcows_btn);
-//        View.OnClickListener moveGame = new View.OnClickListener() {
-//            public void onClick(View v) {
-//                switch(v.getId()){
-//                    case R.id.bullsandcows_btn :
-//                    Intent reserveintent = new Intent(MainActivity.this, BullsAndCowsGameActivity.class);
-//                    startActivity(reserveintent);
-//                        break;
-//
-//                };
-//            }
-//
-//        };
-//
-//        bullsandcows.setOnClickListener(moveGame);
 
     }
 

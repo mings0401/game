@@ -23,11 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".BullsAndCowsGameActivity"
-            android:label="@string/title_activity_bulls_and_cows_game"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
         <activity android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
