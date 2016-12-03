@@ -22,8 +22,10 @@ public class MainActivity extends Activity implements Runnable {
     private AdView [] mAdView = new AdView[2]; //광고 담을 변수
     private Handler handler = null; //thread handler
     private TextView missionNumberTextView, countNumberTextView, stateTextView;
+    //missionNumber : 왼쪽 상단 mission 숫자 maxNumber : 미션 숫자 중 최대 숫자, currentNumber : 현재 바뀌고있는 숫자, switchNumber : 1또는 -1로 쓰레드 숫자가 늘어나거나 줄어드는거 조절
+    //stageNumer : 현재 스테이지 숫자, speed : 숫자 올라가는 속도
     private int missionNumber = 0, maxNumber = 10, currentNumber = 0, switchNumber = 1, stageNumer = 0, speed = 500;
-    private CountThread thread;
+    private CountThread thread; //쓰레드 변수
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
