@@ -79,7 +79,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="10dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="My Top Score : 0"
+                android:text="My Top Stage : 0"
                 android:id="@+id/mytopscore_txt" />
 
         </LinearLayout>

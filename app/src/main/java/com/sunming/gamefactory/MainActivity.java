@@ -20,6 +20,7 @@ import com.google.android.gms.ads.InterstitialAd;
 public class MainActivity extends Activity implements Runnable {
     public static Context mContext; //다른 activity에서 함수 호출되도록
     private AdView [] mAdView = new AdView[2]; //광고 담을 변수
+    private InterstitialAd interstitial; //광고 담을 변수
     private Handler handler = null; //thread handler
     private TextView missionNumberTextView, countNumberTextView, stateTextView;
     //missionNumber : 왼쪽 상단 mission 숫자 maxNumber : 미션 숫자 중 최대 숫자, currentNumber : 현재 바뀌고있는 숫자, switchNumber : 1또는 -1로 쓰레드 숫자가 늘어나거나 줄어드는거 조절
@@ -104,6 +105,7 @@ public class MainActivity extends Activity implements Runnable {
         } else { //game over 됫을때 ...
             Intent finishActivity = new Intent(getApplicationContext(), FinishActivity.class);
             startActivity(finishActivity);
+            showInterstitial();
             finish();
         }
     }
@@ -120,7 +122,7 @@ public class MainActivity extends Activity implements Runnable {
         currentNumber = 0;
         countNumberTextView.setText("0");
 
-        thread = new CountThread(this, 1000);
+        thread = new CountThread(this, speed);
 
         thread.start();
     }
@@ -146,6 +148,26 @@ public class MainActivity extends Activity implements Runnable {
         mAdView[1] = (AdView) findViewById(R.id.adView1);
         mAdView[1].loadAd(adRequest);
 
+        interstitial = new InterstitialAd(this);
+        interstitial.setAdUnitId("ca-app-pub-3628076058136751/1729796220");
+        // Create ad request.
+        // Begin loading your interstitial.
+        interstitial.loadAd(adRequest);
+
+    }
+
+    /**
+     * 전면 광고 실행시크는 함수
+     */
+    private void showInterstitial() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (interstitial.isLoaded()) {
+                    interstitial.show();
+                }
+            }
+        });
     }
 
     /**
