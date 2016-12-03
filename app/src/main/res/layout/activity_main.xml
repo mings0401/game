@@ -126,7 +126,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="bottom|center_horizontal"
-            android:layout_weight="0.11"
+            android:layout_weight="0.1"
             android:orientation="horizontal">
 
             <TextView
@@ -154,7 +154,7 @@
             <com.google.android.gms.ads.AdView
                 android:id="@+id/adView1"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 ads:adSize="BANNER"
