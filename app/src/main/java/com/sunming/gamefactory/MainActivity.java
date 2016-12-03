@@ -3,6 +3,8 @@ package com.sunming.gamefactory;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,7 +22,8 @@ public class MainActivity extends Activity implements Runnable {
     private AdView [] mAdView = new AdView[2]; //광고 담을 변수
     private Handler handler = null; //thread handler
     private TextView missionNumberTextView, countNumberTextView, stateTextView;
-    private int missionNumber = 0, maxNumber = 10, currentNumber = 0, switchNumber = 1;
+    private int missionNumber = 0, maxNumber = 10, currentNumber = 0, switchNumber = 1, stageNumer = 0, speed = 500;
+    private CountThread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,65 @@ public class MainActivity extends Activity implements Runnable {
         Intent startDailogIntent = new Intent(getApplicationContext(), StartDialogActivity.class);
         startActivity(startDailogIntent);
 
+        findViewById(R.id.count_layout).setOnClickListener(mClickListener);
+
+    }
+
+    Button.OnClickListener mClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.count_layout:
+                    counterNumberClick();
+                    break;
+            }
+        }
+    };
+
+    /**
+     * Count Layout 부분 클릭 이벤트
+     */
+    public void counterNumberClick(){
+        thread.falg = false;
+
+        if (countNumberTextView.getText().toString().equals(missionNumberTextView.getText().toString())) {
+            stageNumer++;
+            String s = "stage" + (stageNumer + 1);
+
+            stateTextView.setText(s);
+
+            if (stageNumer > 0 && stageNumer <= 7)
+                maxNumber = 10;
+
+            else if (stageNumer > 7 && stageNumer <= 12)
+                maxNumber = 20;
+
+            else if (stageNumer > 12 && stageNumer <= 16)
+                maxNumber = 30;
+
+            else if (stageNumer > 16 && stageNumer <= 19)
+                maxNumber = 40;
+
+            else
+                maxNumber = 50;
+
+            if (speed > 400)
+                speed -= 15;
+            else if (speed > 300)
+                speed -= 20;
+            else if (speed > 200)
+                speed -= 30;
+            else if (speed > 95)
+                speed -= 40;
+            else if (speed > 50)
+                speed -= 5;
+            else if (speed>20)
+                speed -= 1;
+            else
+                speed = 20;
+            startGame();
+        } else { //game over 됫을때 ...
+
+        }
     }
 
     /**
@@ -54,7 +116,7 @@ public class MainActivity extends Activity implements Runnable {
         currentNumber = 0;
         countNumberTextView.setText("0");
 
-        CountThread thread = new CountThread(this, 1000);
+        thread = new CountThread(this, 1000);
 
         thread.start();
     }

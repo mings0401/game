@@ -1,7 +1,5 @@
 package com.sunming.gamefactory;
 
-import com.sunming.gamefactory.MainActivity;
-
 /**
  * Created by minkyujo on 2016. 12. 3..
  */
