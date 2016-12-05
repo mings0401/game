@@ -22,18 +22,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
+
         <activity
             android:name=".StartDialogActivity"
             android:label="@string/title_activity_start_dialog"
             android:theme="@android:style/Theme.Dialog" />
+
         <activity
             android:name=".FinishActivity"
             android:label="@string/title_activity_finish"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>

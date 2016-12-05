@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -131,8 +128,12 @@ public class MainActivity extends Activity implements Runnable {
                 speed = 20;
             startGame();
         } else { //game over 됫을때 ...
+            String topRecord = "" + getMyyMaxStage();
+            String currentRecord = "" + stageNumer;
             insertMyStageToDB();
             Intent finishActivity = new Intent(getApplicationContext(), FinishActivity.class);
+            finishActivity.putExtra("topRecord", topRecord);
+            finishActivity.putExtra("currentRecord", currentRecord);
             startActivity(finishActivity);
             showInterstitial();
             finish();
