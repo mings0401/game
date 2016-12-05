@@ -75,9 +75,7 @@ public class FinishActivity extends Activity {
         try{
             mKakaoTalkLinkMessageBuilder.addText("Stage"+currentRecord+" 달성!");
             mKakaoTalkLinkMessageBuilder.addImage("", 128, 128);
-            mKakaoTalkLinkMessageBuilder.addAppButton("테스트 앱 열기", new AppActionBuilder()
-                    .setAndroidExecuteURLParam("target=main")
-                    .setIOSExecuteURLParam("target=main", AppActionBuilder.DEVICE_TYPE.PHONE).build());
+            mKakaoTalkLinkMessageBuilder.addAppButton("테스트 앱 열기", new AppActionBuilder().setUrl("").build());
             mKakaoLink.sendMessage(mKakaoTalkLinkMessageBuilder, this);
         }catch(KakaoParameterException e){
             e.printStackTrace();
