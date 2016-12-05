@@ -15,6 +15,7 @@ import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.kakao.util.KakaoParameterException;
 
 public class FinishActivity extends Activity {
+    String topRecord = "", currentRecord = "";
     private TextView topRecordText, currentRecordText;
     private AdView mAdView;
     private KakaoLink mKakaoLink;
@@ -29,8 +30,8 @@ public class FinishActivity extends Activity {
         currentRecordText = (TextView) findViewById(R.id.currentRecordTxt);
 
         Intent intent = getIntent();
-        String topRecord = intent.getStringExtra("topRecord");
-        String currentRecord = intent.getStringExtra("currentRecord");
+        topRecord = intent.getStringExtra("topRecord");
+        currentRecord = intent.getStringExtra("currentRecord");
 
         topRecordText.setText(topRecord);
         currentRecordText.setText(currentRecord);
@@ -72,9 +73,8 @@ public class FinishActivity extends Activity {
     }
      void SendKakaoMessage(){
         try{
-            mKakaoTalkLinkMessageBuilder.addText("TEST 메시지");
-            mKakaoTalkLinkMessageBuilder.addImage("http://test.com/test.jpg", 128, 128);
-            mKakaoTalkLinkMessageBuilder.addWebLink("홈 페이지 이동", "http://test.com");
+            mKakaoTalkLinkMessageBuilder.addText("Stage"+currentRecord+" 달성!");
+            mKakaoTalkLinkMessageBuilder.addImage("", 128, 128);
             mKakaoTalkLinkMessageBuilder.addAppButton("테스트 앱 열기", new AppActionBuilder()
                     .setAndroidExecuteURLParam("target=main")
                     .setIOSExecuteURLParam("target=main", AppActionBuilder.DEVICE_TYPE.PHONE).build());
