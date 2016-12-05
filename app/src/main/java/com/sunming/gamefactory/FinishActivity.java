@@ -9,10 +9,17 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.kakao.kakaolink.AppActionBuilder;
+import com.kakao.kakaolink.KakaoLink;
+import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
+import com.kakao.util.KakaoParameterException;
 
 public class FinishActivity extends Activity {
     private TextView topRecordText, currentRecordText;
     private AdView mAdView;
+    private KakaoLink mKakaoLink;
+    private KakaoTalkLinkMessageBuilder mKakaoTalkLinkMessageBuilder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +40,9 @@ public class FinishActivity extends Activity {
         mAdView.loadAd(adRequest);
 
         findViewById(R.id.restartGameBtn).setOnClickListener(mClickListener);
+        findViewById(R.id.kakaoLinkBtn).setOnClickListener(mClickListener);
+
+
 
     }
 
@@ -44,8 +54,33 @@ public class FinishActivity extends Activity {
                     startActivity(mainIntent);
                     finish();
                     break;
+                case R.id.kakaoLinkBtn:
+                    InitKakaoLink();
+                    SendKakaoMessage();
+                    break;
             }
         }
     };
 
+    private void InitKakaoLink(){
+        try{
+            mKakaoLink = KakaoLink.getKakaoLink(this);
+            mKakaoTalkLinkMessageBuilder = mKakaoLink.createKakaoTalkLinkMessageBuilder();
+        }catch(KakaoParameterException e){
+            e.printStackTrace();
+        }
+    }
+     void SendKakaoMessage(){
+        try{
+            mKakaoTalkLinkMessageBuilder.addText("TEST 메시지");
+            mKakaoTalkLinkMessageBuilder.addImage("http://test.com/test.jpg", 128, 128);
+            mKakaoTalkLinkMessageBuilder.addWebLink("홈 페이지 이동", "http://test.com");
+            mKakaoTalkLinkMessageBuilder.addAppButton("테스트 앱 열기", new AppActionBuilder()
+                    .setAndroidExecuteURLParam("target=main")
+                    .setIOSExecuteURLParam("target=main", AppActionBuilder.DEVICE_TYPE.PHONE).build());
+            mKakaoLink.sendMessage(mKakaoTalkLinkMessageBuilder, this);
+        }catch(KakaoParameterException e){
+            e.printStackTrace();
+        }
+    }
 }
