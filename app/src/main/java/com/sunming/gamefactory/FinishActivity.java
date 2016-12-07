@@ -20,6 +20,7 @@ public class FinishActivity extends Activity {
     private AdView mAdView;
     private KakaoLink mKakaoLink;
     private KakaoTalkLinkMessageBuilder mKakaoTalkLinkMessageBuilder;
+    private BackPressCloseHandler backPressCloseHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,13 @@ public class FinishActivity extends Activity {
         findViewById(R.id.kakaoLinkBtn).setOnClickListener(mClickListener);
 
 
+        backPressCloseHandler = new BackPressCloseHandler(this);
+    }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
     }
 
     Button.OnClickListener mClickListener = new View.OnClickListener() {

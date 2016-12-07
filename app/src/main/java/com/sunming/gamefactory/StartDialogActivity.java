@@ -11,7 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 
 public class StartDialogActivity extends Activity {
-
+    private BackPressCloseHandler backPressCloseHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +27,14 @@ public class StartDialogActivity extends Activity {
                 finish();
             }
         });
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
     }
 
 }
