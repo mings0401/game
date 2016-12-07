@@ -136,9 +136,9 @@ public class MainActivity extends Activity implements Runnable {
                 speed = 20;
             startGame();
         } else { //game over 됫을때 ...
+            insertMyStageToDB();
             String topRecord = "" + getMyyMaxStage();
             String currentRecord = "" + stageNumer;
-            insertMyStageToDB();
             Intent finishActivity = new Intent(getApplicationContext(), FinishActivity.class);
             finishActivity.putExtra("topRecord", topRecord);
             finishActivity.putExtra("currentRecord", currentRecord);
