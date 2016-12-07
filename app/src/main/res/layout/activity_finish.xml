@@ -55,8 +55,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:text="Top Record"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 android:textSize="25sp"
+                android:layout_marginLeft="5dp"
                 android:ems="10" />
         </LinearLayout>
 
@@ -73,7 +74,7 @@
                 android:layout_height="fill_parent"
                 android:inputType="textPersonName"
                 android:text="0"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 android:textSize="100sp"
                 android:textAlignment="center"
                 android:ems="10" />
@@ -91,7 +92,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:text="Current Record"
-                android:textStyle="bold"
+                android:textStyle="italic"
+                android:layout_marginLeft="5dp"
                 android:textSize="25sp"
                 android:ems="10" />
         </LinearLayout>
@@ -109,7 +111,7 @@
                 android:layout_height="fill_parent"
                 android:inputType="textPersonName"
                 android:text="0"
-                android:textStyle="bold"
+                android:textStyle="italic"
                 android:textSize="100sp"
                 android:textAlignment="center"
                 android:ems="10" />
@@ -123,7 +125,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:weightSum="1"
                 android:gravity="center_vertical|center"
                 android:layout_width="match_parent"
@@ -131,16 +133,24 @@
 
                 <Button
                     android:text="Restart Game"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/restartGameBtn"
+                    android:textStyle="italic"
+                    android:textSize="25sp"
+                    android:layout_margin="5dp"
                     android:layout_weight="0.5" />
 
-                <ImageButton
+
+
+                <Button
+                    android:text="Share KakaoTalk"
                     android:layout_weight="0.5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    ads:srcCompat="@mipmap/kakaolink_btn_medium"
+                    android:textStyle="italic"
+                    android:textSize="25sp"
+                    android:layout_margin="5dp"
                     android:id="@+id/kakaoLinkBtn" />
 
             </LinearLayout>
