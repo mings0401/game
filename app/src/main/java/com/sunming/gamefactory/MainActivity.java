@@ -27,6 +27,7 @@ public class MainActivity extends Activity implements Runnable {
     //stageNumer : 현재 스테이지 숫자, speed : 숫자 올라가는 속도
     private int missionNumber = 0, maxNumber = 10, currentNumber = 0, switchNumber = 1, stageNumer = 0, speed = 500;
     private CountThread thread; //쓰레드 변수
+    private BackPressCloseHandler backPressCloseHandler;
 
     //DB 관련 변수
     private MySQLiteOpenHelper helper;
@@ -72,7 +73,14 @@ public class MainActivity extends Activity implements Runnable {
         startActivity(startDailogIntent);
 
         findViewById(R.id.count_layout).setOnClickListener(mClickListener);
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
     }
 
     Button.OnClickListener mClickListener = new View.OnClickListener() {
