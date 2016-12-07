@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#E1E4E9"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     >
 
@@ -23,8 +22,8 @@
             ads:adSize="BANNER"
             ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
 
-    </LinearLayout>
 
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,6 +60,11 @@
                 android:ems="10" />
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="3px"
+            android:background="#F0F2F3" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,6 +84,8 @@
                 android:ems="10" />
         </LinearLayout>
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,6 +103,11 @@
                 android:textSize="25sp"
                 android:ems="10" />
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="3px"
+            android:background="#F0F2F3" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -117,6 +128,8 @@
                 android:ems="10" />
         </LinearLayout>
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,6 +145,7 @@
                 android:layout_height="match_parent">
 
                 <Button
+                    android:background="#27b0f6"
                     android:text="Restart Game"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -144,6 +158,7 @@
 
 
                 <Button
+                    android:background="#f9df32"
                     android:text="Share KakaoTalk"
                     android:layout_weight="0.5"
                     android:layout_width="fill_parent"
@@ -156,6 +171,11 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="3px"
+        android:background="#F0F2F3" />
 
 
 </LinearLayout>
