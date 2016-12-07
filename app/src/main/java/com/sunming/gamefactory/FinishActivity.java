@@ -82,7 +82,10 @@ public class FinishActivity extends Activity {
         try{
             mKakaoTalkLinkMessageBuilder.addText("Stage"+currentRecord+" 달성!");
             mKakaoTalkLinkMessageBuilder.addImage("https://lh3.googleusercontent.com/L_MQbTo8rn8Xtlj04XMtQOkNY2OKARxt2wmsXH0Jpjz1tS7pFY745NwiySRKJdPFrbk", 128, 128);
-            mKakaoTalkLinkMessageBuilder.addAppButton("Click50 바로가기", new AppActionBuilder().setUrl("market://details?id=com.sunming.gamefactory").build());
+            mKakaoTalkLinkMessageBuilder.addAppButton("CLICK50 바로가기",
+                    new AppActionBuilder()
+                            .setAndroidExecuteURLParam("target=main")
+                            .setIOSExecuteURLParam("target=main", AppActionBuilder.DEVICE_TYPE.PHONE).build());
             mKakaoLink.sendMessage(mKakaoTalkLinkMessageBuilder, this);
         }catch(KakaoParameterException e){
             e.printStackTrace();
