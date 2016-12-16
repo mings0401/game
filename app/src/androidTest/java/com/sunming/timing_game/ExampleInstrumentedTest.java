@@ -1,4 +1,4 @@
-package com.sunming.gamefactory;
+package com.sunming.timing_game;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.sunming.gamefactory", appContext.getPackageName());
+        assertEquals("com.sunming.timing_game", appContext.getPackageName());
     }
 }

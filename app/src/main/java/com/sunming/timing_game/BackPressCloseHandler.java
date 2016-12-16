@@ -1,4 +1,4 @@
-package com.sunming.gamefactory;
+package com.sunming.timing_game;
 
 /**
  * Created by minkyujo on 2016. 12. 7..

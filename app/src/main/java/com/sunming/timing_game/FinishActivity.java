@@ -1,4 +1,4 @@
-package com.sunming.gamefactory;
+package com.sunming.timing_game;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -82,7 +82,7 @@ public class FinishActivity extends Activity {
         try{
             mKakaoTalkLinkMessageBuilder.addText("Stage"+currentRecord+" 달성!");
             mKakaoTalkLinkMessageBuilder.addImage("http://postfiles4.naver.net/MjAxNjEyMTZfNTEg/MDAxNDgxODc0OTk3NDUz.9AdVzWLZUHH5iBPnCnixhvuCEjVI6tnQV3XhhwZ2s34g.Wrhu49vVv7ZnLKRs9_mHcfKMtx-_SNWQyx3cU1t1fkQg.PNG.mings0401/timing.png?type=w1", 128, 128);
-            mKakaoTalkLinkMessageBuilder.addAppButton("CLICK50 바로가기",
+            mKakaoTalkLinkMessageBuilder.addAppButton("Timing Game 바로가기",
                     new AppActionBuilder()
                             .setAndroidExecuteURLParam("target=main")
                             .setIOSExecuteURLParam("target=main", AppActionBuilder.DEVICE_TYPE.PHONE).build());

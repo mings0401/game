@@ -1,4 +1,4 @@
-package com.sunming.gamefactory;
+package com.sunming.timing_game;
 
 import android.app.Activity;
 import android.os.Bundle;

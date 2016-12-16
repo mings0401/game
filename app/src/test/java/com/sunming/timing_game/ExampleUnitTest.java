@@ -1,4 +1,4 @@
-package com.sunming.gamefactory;
+package com.sunming.timing_game;
 
 import org.junit.Test;
 

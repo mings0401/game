@@ -1,4 +1,4 @@
-package com.sunming.gamefactory;
+package com.sunming.timing_game;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
