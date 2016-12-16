@@ -7,7 +7,7 @@
 
     <Button
         android:background="#40eb77"
-        android:text="Start Click50"
+        android:text="Game Start"
         android:textStyle="italic"
         android:textSize="18sp"
         android:layout_width="match_parent"
