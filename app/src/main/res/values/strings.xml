@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Timing Game</string>
     <string name="title_activity_bulls_and_cows_game">BullsAndCowsGame</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3628076058136751/7636729026</string>
-    <string name="banner_ad_unit_id_bottom">ca-app-pub-3628076058136751/7202103422</string>
-    <string name="front_ad_unit_id">ca-app-pub-3628076058136751/1729796220</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3628076058136751/6781424220</string>
+    <string name="banner_ad_unit_id_bottom">ca-app-pub-3628076058136751/6781424220</string>
+    <string name="front_ad_unit_id">ca-app-pub-3628076058136751/8258157429</string>
     <string name="title_activity_start_dialog">StartDialogActivity</string>
     <string name="title_activity_finish">FinishActivity</string>
 </resources>
