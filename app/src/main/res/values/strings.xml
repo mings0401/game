@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Click50</string>
+    <string name="app_name">Timing Game</string>
     <string name="title_activity_bulls_and_cows_game">BullsAndCowsGame</string>
     <string name="banner_ad_unit_id">ca-app-pub-3628076058136751/7636729026</string>
     <string name="banner_ad_unit_id_bottom">ca-app-pub-3628076058136751/7202103422</string>
